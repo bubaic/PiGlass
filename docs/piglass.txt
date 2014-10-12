@@ -102,6 +102,9 @@ installRemote(str pth):
 getPackageFromDisplayName(str dname):
 	NRC Gets the package URL from the server via display name.
 
+onSpeechInput(str speech):
+	DNC The very basic speech actions.
+
 class EventManager:
 	NRC An EventManager is the controller governing inputs to PiGlass.
 
@@ -121,4 +124,53 @@ class PGApp:
 class ResourcePack:
 	A ResourePack is a preloaded object with all the resources for an app.
     	It loads images as pygame.image objects and text files as lists of strings.
-	
+	__init__(list toload):
+		Load and add items from <toload>
+	get(str item):
+		Get the item stored as <item>
+	add(str item):
+		Add the item specified in <item>
+
+class ValueFile:
+	A ValueFile is a file of x=y attributes with #comments.
+	__init__(str path):
+		Load and scan from <path>
+	scan():
+		Scan and load values from <self.path>
+	get(str value, bool rescan=False):
+		Get the stored data from <value>, rescanning if <rescan>
+
+class LinuxScript:
+	A LinuxScript is a representation of a shell script.
+	__init__(str path, bool su=False, cdTo=None, async=False):
+		Loads but does NOT run the script.
+	run():
+		Runs <path> from directory <cdTo> <async>hronously with <su> privileges.
+
+class SyncedFile:
+	A SyncedFile is a dict synchronized with a file.
+    	The produced file is a valid ValueFile object.
+	__init__(str path, str mode='w', dict initial={}):
+		Initializes valuse but creates no files.
+	store(str name, str value):
+		Stores <name>:<value> into the internal dict.
+	sync():
+		Synchronizes the internal dict with <path> with mode <mode>
+
+class SpeechRecognizer:
+	A SpeechRecognizer provides the interfaces for parsing speech
+	NRC
+
+class Notification:
+	A Notification is an object controlling a notification on PiGlass.
+	__init__(str title, str text, pygame.image icon=None):
+		Initializes the notification with <title> and <text>
+	show():
+		Shows the notification.
+	remove():
+		Removes the notification.
+	render():
+		NRC Renders the notification. Done by the system.
+
+
+		

@@ -457,7 +457,7 @@ class ValueFile(object):
         except:
             return None
 
-def LinuxScript(object):
+class LinuxScript(object):
     """
     A LinuxScript is a representation of a shell script.
     """
